@@ -2,6 +2,7 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const Cadastros = require('./models/cadastros');
+const fs = require ('fs');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
@@ -18,7 +19,16 @@ const connectDB = async () => {
 }
 
 app.get('/', (req,res) => {
-      res.send({title: 'Cadastros'});
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      fs.readFile('index.html', function(error, data) {
+            if (error) {
+                  res.writeHead(404);
+                  res.write('Error: File not found !');
+            } else {
+                  res.write(data);
+            }
+            res.end();
+      });
 });
 
 app.get('/adicionar-cadastro', async (req,res) => {
