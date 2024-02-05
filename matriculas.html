@@ -22,7 +22,7 @@
                               let cadastrosContainer = document.getElementById('cadastros-container');
                               // Assuming 'data' is an array of objects, you can customize this part based on your data structure
                               data.forEach(cadastro => {
-                                    cadastrosContainer.innerHTML += `<p>${cadastro.name}: ${cadastro.value}</p>`;
+                                    cadastrosContainer.innerHTML += `<p>${cadastro.matricula}: ${cadastro.nome}</p>`;
                               });
                         } else {
                               console.error("Error fetching data from /cadastros");
