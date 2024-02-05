@@ -19,7 +19,7 @@
             <button type="button" onclick="cadastrar()">Cadastrar</button>
       </form>
       <br>
-      <table id="cadastros-table" class="table table-striped" >
+      <table id="cadastros-table" class="table table-striped">
             <thead class="thead-dark">
                   <tr>
                         <th>Matrícula</th>
@@ -29,18 +29,18 @@
             </thead>
             <tbody id="cadastros-body"></tbody>
       </table>
-      <button onclick="saveChanges()">Save Changes</button>
 
       <script>
-            let isEditable = false;
-
+            // Fetch data from the /cadastros endpoint
             async function fetchCadastros() {
                   try {
                         const response = await fetch('/cadastros');
                         const data = await response.json();
 
+                        // Update the table content dynamically
                         if (data) {
                               let cadastrosBody = document.getElementById('cadastros-body');
+                              // Assuming 'data' is an array of objects, you can customize this part based on your data structure
                               data.forEach(cadastro => {
                                     cadastrosBody.innerHTML += `
                                           <tr>
@@ -58,41 +58,34 @@
                   }
             }
 
-            function saveChanges() {
-                  // Prepare an array to store the updated data
-                  let updatedData = [];
+            // Call the fetchCadastros function when the page loads
+            fetchCadastros();
 
-                  // Iterate through the rows and get the updated content
-                  let rows = document.querySelectorAll('#cadastros-table tbody tr');
-                  rows.forEach(row => {
-                        let matricula = row.cells[0].textContent;
-                        let nome = row.cells[1].textContent;
+            function cadastrar() {
+                  // Get values from the input fields
+                  const matricula = document.getElementById('matricula').value;
+                  const nome = document.getElementById('nome').value;
 
-                        // Check if both matricula and nome are not empty
-                        if (matricula.trim() !== '' || nome.trim() !== '') {
-                              updatedData.push({ matricula, nome });
-                        }
-                  });
+                  // Prepare data for the POST request
+                  const data = { matricula, nome };
 
-                  // Send the updated data to the server
-                  fetch('/update-cadastros', {
+                  // Send data to the server using fetch
+                  fetch('/adicionar-cadastro', {
                         method: 'POST',
                         headers: {
                               'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify({ updatedData }),
+                        body: JSON.stringify(data),
                   })
                   .then(response => response.text())
                   .then(result => {
-                        console.log(result);
+                        location.reload();
                   })
                   .catch(error => {
                         console.error('Error:', error);
                   });
             }
 
-            // Call the fetchCadastros function when the page loads
-            fetchCadastros();
       </script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
