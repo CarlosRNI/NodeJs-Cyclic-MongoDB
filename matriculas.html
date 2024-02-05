@@ -19,6 +19,8 @@
             <button type="button" onclick="cadastrar()">Cadastrar</button>
       </form>
       <br>
+      <button id="salvar" onclick="saveChanges()">Salvar alterações</button>
+      <br>
       <table id="cadastros-table" class="table table-striped">
             <thead class="thead-dark">
                   <tr>
@@ -85,6 +87,46 @@
                         console.error('Error:', error);
                   });
             }
+
+            function saveChanges() {
+    // Prepare an array to store the updated data
+    let updatedData = [];
+
+    // Iterate through the rows and get the updated content
+    let rows = document.querySelectorAll('#cadastros-table tbody tr');
+    rows.forEach(row => {
+      let matricula = row.cells[0].textContent;
+      let nome = row.cells[1].textContent;
+
+      // Check if both matricula and nome are not empty
+      if (matricula.trim() !== '' || nome.trim() !== '') {
+        updatedData.push({ matricula, nome });
+      }
+    });
+
+    // Send the updated data to the server for the entire table
+    try {
+      fetch('/update-cadastros', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ updatedData, updateAll: true }),
+      })
+      .then(response => {
+        if (response.ok) {
+          console.log('Data updated successfully');
+        } else {
+          console.error('Failed to update data:', response.statusText);
+        }
+      })
+      .catch(error => {
+        console.error('Error:', error);
+      });
+    } catch (error) {
+      console.error('Error:', error);
+    }
+  }
 
       </script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
