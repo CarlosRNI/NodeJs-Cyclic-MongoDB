@@ -8,17 +8,22 @@
 <body>
       <h1>Matrículas HTML</h1>
       <br>
+      <div id="cadastros-container"></div>
+
       <script>
-            // Fetch the data dynamically from the server using the /cadastros route
+            // Fetch data from the /cadastros endpoint
             async function fetchCadastros() {
                   try {
                         const response = await fetch('/cadastros');
                         const data = await response.json();
 
-                        // If data is fetched successfully, update the link with the actual URL
+                        // Update the content dynamically
                         if (data) {
-                              let linkMatriculas = document.getElementById('matriculas-html');
-                              linkMatriculas.href = '/cadastros'; // Update the href attribute
+                              let cadastrosContainer = document.getElementById('cadastros-container');
+                              // Assuming 'data' is an array of objects, you can customize this part based on your data structure
+                              data.forEach(cadastro => {
+                                    cadastrosContainer.innerHTML += `<p>${cadastro.name}: ${cadastro.value}</p>`;
+                              });
                         } else {
                               console.error("Error fetching data from /cadastros");
                         }
@@ -30,5 +35,6 @@
             // Call the fetchCadastros function when the page loads
             fetchCadastros();
       </script>
+      
 </body>
 </html>
