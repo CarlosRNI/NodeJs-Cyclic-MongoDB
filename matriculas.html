@@ -8,5 +8,25 @@
 <body>
       <h1>Matrículas HTML</h1>
       <br>
+      <script>
+            async function fetchCadastros() {
+                  try {
+                        const response = await fetch('/cadastros');
+                        const data = await response.json();
+
+                        // If data is fetched successfully, update the link with the actual URL
+                        if (data) {
+                              let linkMatriculas = document.getElementById('matriculas-html');
+                              linkMatriculas.href = '/cadastros'; // Update the href attribute
+                        } else {
+                              console.error("Error fetching data from /cadastros");
+                        }
+                  } catch (error) {
+                        console.error("Error fetching data:", error);
+                  }
+            }
+
+            fetchCadastros();
+      </script>
 </body>
 </html>
