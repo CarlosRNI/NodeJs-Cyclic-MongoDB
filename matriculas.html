@@ -8,7 +8,16 @@
 <body>
       <h1>Matrículas HTML</h1>
       <br>
-      <div id="cadastros-container"></div>
+      <table id="cadastros-table">
+            <thead>
+                  <tr>
+                        <th>Matrícula</th>
+                        <th>Nome</th>
+                        <!-- Add more headers for additional properties if needed -->
+                  </tr>
+            </thead>
+            <tbody id="cadastros-body"></tbody>
+      </table>
 
       <script>
             // Fetch data from the /cadastros endpoint
@@ -17,12 +26,18 @@
                         const response = await fetch('/cadastros');
                         const data = await response.json();
 
-                        // Update the content dynamically
+                        // Update the table content dynamically
                         if (data) {
-                              let cadastrosContainer = document.getElementById('cadastros-container');
+                              let cadastrosBody = document.getElementById('cadastros-body');
                               // Assuming 'data' is an array of objects, you can customize this part based on your data structure
                               data.forEach(cadastro => {
-                                    cadastrosContainer.innerHTML += `<p>${cadastro.matricula}: ${cadastro.nome}</p>`;
+                                    cadastrosBody.innerHTML += `
+                                          <tr>
+                                                <td>${cadastro.matricula}</td>
+                                                <td>${cadastro.nome}</td>
+                                                <!-- Add more cells for additional properties if needed -->
+                                          </tr>
+                                    `;
                               });
                         } else {
                               console.error("Error fetching data from /cadastros");
