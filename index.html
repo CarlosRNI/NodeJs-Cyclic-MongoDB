@@ -7,5 +7,12 @@
 </head>
 <body>
       <h1>Index HTML</h1>
+      <br>
+      <a id="matriculas-html" href="#">Go to Matrículas.html</a>
 </body>
+<script>
+      let currentURL = window.location.href;
+      let linkMatriculas = document.getElementById('matriculas-html');
+      linkMatriculas.href = currentURL + cadastros;
+</script>
 </html>
