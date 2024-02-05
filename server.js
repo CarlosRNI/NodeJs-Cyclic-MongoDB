@@ -76,19 +76,26 @@ app.get('/cadastros', async (req,res) => {
 
 app.post('/adicionar-cadastro', async (req, res) => {
       try {
-            const { matricula, nome } = req.body;
-
-            // Validate and handle the data as needed
-
-            // Insert the new data into the Cadastros collection
-            await Cadastros.insertMany([{ matricula, nome }]);
-
-            res.send("Data added...");
+        const { matricula, nome } = req.body;
+    
+        // Validate and handle the data as needed
+    
+        // Check if the matricula already exists in the database
+        const existingCadastro = await Cadastros.findOne({ matricula });
+    
+        if (existingCadastro) {
+          // Matricula already exists, handle the situation (e.g., send an error response)
+          res.status(400).send("Matricula already exists in the database");
+        } else {
+          // Matricula doesn't exist, proceed with inserting the new data into the Cadastros collection
+          await Cadastros.insertMany([{ matricula, nome }]);
+          res.send("Data added successfully");
+        }
       } catch (error) {
-            console.error(error);
-            res.status(500).send("Internal Server Error");
+        console.error(error);
+        res.status(500).send("Internal Server Error");
       }
-});
+    });
 
 // Update data in the Cadastros collection based on the received data
 app.post('/update-cadastros', async (req, res) => {
