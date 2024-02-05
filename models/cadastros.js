@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 const CadastrosSchema = new Schema({
       matricula: {
-            type: Number,
+            type: String,
             required: true,
       },
       nome: {
