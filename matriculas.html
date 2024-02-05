@@ -33,6 +33,18 @@
       </table>
 
       <script>
+
+             // Check for the 'alert' query parameter in the URL
+    const urlParams = new URLSearchParams(window.location.search);
+    const alertMessage = urlParams.get('alert');
+
+    // Display an alert if the 'alert' parameter is present
+    if (alertMessage === 'MatriculaAlreadyExists') {
+      alert('Matricula already exists in the database');
+    }
+
+
+    
             // Fetch data from the /cadastros endpoint
             async function fetchCadastros() {
                   try {
