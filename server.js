@@ -85,8 +85,9 @@ app.post('/adicionar-cadastro', async (req, res) => {
     
         if (existingCadastro) {
           // Matricula already exists, handle the situation (e.g., send an error response)
-          res.status(400).send("Matricula already exists in the database");
-          alert('matricula já existe');
+          const alertMessage = '<script>alert("Matricula already exists in the database");</script>';
+            res.send(alertMessage);
+            return;
         } else {
           // Matricula doesn't exist, proceed with inserting the new data into the Cadastros collection
           await Cadastros.insertMany([{ matricula, nome }]);
