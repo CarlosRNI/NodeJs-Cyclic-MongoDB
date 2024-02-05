@@ -3,9 +3,12 @@ const express = require('express');
 const mongoose = require('mongoose');
 const Cadastros = require('./models/cadastros');
 const fs = require ('fs');
+const bodyParser = require('body-parser');
 
 const app = express();
 const PORT = process.env.PORT || 3000;
+
+app.use(bodyParser.json());
 
 mongoose.set('strictQuery', false);
 const connectDB = async () => {
@@ -68,6 +71,22 @@ app.get('/cadastros', async (req,res) => {
             res.json(cadastros);
       } else {
             res.send("Something went wrong...");
+      }
+});
+
+app.post('/adicionar-cadastro', async (req, res) => {
+      try {
+            const { matricula, nome } = req.body;
+
+            // Validate and handle the data as needed
+
+            // Insert the new data into the Cadastros collection
+            await Cadastros.insertMany([{ matricula, nome }]);
+
+            res.send("Data added...");
+      } catch (error) {
+            console.error(error);
+            res.status(500).send("Internal Server Error");
       }
 });
 
