@@ -90,6 +90,26 @@ app.post('/adicionar-cadastro', async (req, res) => {
       }
 });
 
+// Update data in the Cadastros collection based on the received data
+app.post('/update-cadastros', async (req, res) => {
+      try {
+          const { updatedData } = req.body;
+  
+          // Iterate through the updated data and update the corresponding records in the database
+          for (const updatedItem of updatedData) {
+              const { matricula, nome } = updatedItem;
+  
+              // Find the document by matricula and update the nome field
+              await Cadastros.findOneAndUpdate({ matricula }, { nome });
+          }
+  
+          res.send("Data updated successfully");
+      } catch (error) {
+          console.error(error);
+          res.status(500).send("Internal Server Error");
+      }
+  });
+
 connectDB().then(() => {
       app.listen(PORT, () => {
             console.log('Listening on port: ', PORT);

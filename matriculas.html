@@ -68,8 +68,8 @@
                         let matricula = row.cells[0].textContent;
                         let nome = row.cells[1].textContent;
 
-                        // Check if the value in the second column has changed
-                        if (row.cells[1].isContentEditable) {
+                        // Check if both matricula and nome are not empty
+                        if (matricula.trim() !== '' || nome.trim() !== '') {
                               updatedData.push({ matricula, nome });
                         }
                   });
