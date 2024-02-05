@@ -47,7 +47,7 @@ app.get('/matriculas', (req,res) => {
       });
 });
 
-app.get('/adicionar-cadastro', async (req,res) => {
+/*app.get('/adicionar-cadastro', async (req,res) => {
       try {
             await Cadastros.insertMany([
                   {
@@ -63,7 +63,7 @@ app.get('/adicionar-cadastro', async (req,res) => {
       } catch (error) {
             console.log(error);
       }
-});
+});*/
 
 app.get('/cadastros', async (req,res) => {
       const cadastros = await Cadastros.find();

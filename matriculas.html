@@ -79,9 +79,7 @@
                   })
                   .then(response => response.text())
                   .then(result => {
-                        console.log(result);
-                        // You can perform additional actions after a successful request, e.g., show a success message.
-                        console.log('Cadastro realizado !');
+                        location.reload();
                   })
                   .catch(error => {
                         console.error('Error:', error);
