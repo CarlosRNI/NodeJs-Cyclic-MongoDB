@@ -29,18 +29,19 @@
             </thead>
             <tbody id="cadastros-body"></tbody>
       </table>
+      <button onclick="makeEditable()">Make Table Editable</button>
+      <button onclick="saveChanges()">Save Changes</button>
 
       <script>
-            // Fetch data from the /cadastros endpoint
+            let isEditable = false;
+
             async function fetchCadastros() {
                   try {
                         const response = await fetch('/cadastros');
                         const data = await response.json();
 
-                        // Update the table content dynamically
                         if (data) {
                               let cadastrosBody = document.getElementById('cadastros-body');
-                              // Assuming 'data' is an array of objects, you can customize this part based on your data structure
                               data.forEach(cadastro => {
                                     cadastrosBody.innerHTML += `
                                           <tr>
@@ -58,34 +59,51 @@
                   }
             }
 
-            // Call the fetchCadastros function when the page loads
-            fetchCadastros();
+            function makeEditable() {
+                  isEditable = !isEditable;
 
-            function cadastrar() {
-                  // Get values from the input fields
-                  const matricula = document.getElementById('matricula').value;
-                  const nome = document.getElementById('nome').value;
+                  // Update contenteditable attribute for each cell in the second column
+                  let cells = document.querySelectorAll('#cadastros-table td:nth-child(2)');
+                  cells.forEach(cell => {
+                        cell.contentEditable = isEditable;
+                  });
+            }
 
-                  // Prepare data for the POST request
-                  const data = { matricula, nome };
+            function saveChanges() {
+                  // Prepare an array to store the updated data
+                  let updatedData = [];
 
-                  // Send data to the server using fetch
-                  fetch('/adicionar-cadastro', {
+                  // Iterate through the rows and get the updated content
+                  let rows = document.querySelectorAll('#cadastros-table tbody tr');
+                  rows.forEach(row => {
+                        let matricula = row.cells[0].textContent;
+                        let nome = row.cells[1].textContent;
+
+                        // Check if the value in the second column has changed
+                        if (row.cells[1].isContentEditable) {
+                              updatedData.push({ matricula, nome });
+                        }
+                  });
+
+                  // Send the updated data to the server
+                  fetch('/update-cadastros', {
                         method: 'POST',
                         headers: {
                               'Content-Type': 'application/json',
                         },
-                        body: JSON.stringify(data),
+                        body: JSON.stringify({ updatedData }),
                   })
                   .then(response => response.text())
                   .then(result => {
-                        location.reload();
+                        console.log(result);
                   })
                   .catch(error => {
                         console.error('Error:', error);
                   });
             }
 
+            // Call the fetchCadastros function when the page loads
+            fetchCadastros();
       </script>
       <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
       <script src="https://cdn.jsdelivr.net/npm/popper.js@1.14.3/dist/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
