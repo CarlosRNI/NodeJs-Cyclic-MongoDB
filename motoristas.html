@@ -69,7 +69,7 @@
             </div>
           </div>
           <br>
-      <div id="table-display" class="table table-striped"></div>
+      <div id="table-display" style="display: flex; justify-content: center;" class="table table-striped"></div>
 
       <script>
 
@@ -357,7 +357,7 @@
                   table.width = "80%";
                   table.border = "1px solid black";
                   table.style.borderCollapse = "collapse";
-                  table.className = "table table-striped";
+                  table.className = "table table-striped thead-dark";
                   let headerRow = table.insertRow(0);
                   // Add headers
                   for (let header in planilha_de_horas_tratada_json[0]) {
