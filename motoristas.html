@@ -42,20 +42,18 @@
       <h1 style="margin-left: 15px;">Pagamentos Motoristas</h1>
       <br>
       <form class="row g-4 align-items-center" style="margin: auto; padding: 20px;">
-            <div class="col-auto">
+            <div style="padding: 50px;" class="col-auto">
                   <label style="font-weight: bold;" for="planilha-a-tratar" class="form-label">Relatório Enterprise:</label>
                   <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-a-tratar" id="planilha-a-tratar">
             </div>
-            <div class="col-auto">
+            <div style="padding: 50px;" class="col-auto">
                   <label style="font-weight: bold;" for="planilha-de-comissao" class="form-label">Planilha de comissões:</label>
                   <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-de-comissao" id="planilha-de-comissao">
             </div>
-            <div class="col-auto">
-                  <label> </label>
+            <div style="padding: 50px;" class="col-auto">
                   <button onclick="salvaPlanilha()" type="button" class="btn btn-light" id="salvar">Salvar Planilha</button>
             </div>
-            <div class="col-auto">
-                  <label> </label>
+            <div style="padding: 50px;" class="col-auto">
                   <button onclick="salvaTxt()" type="button" class="btn btn-light" id="salvar-txt">Salvar .txt</button>
             </div>
       </form> 
@@ -66,22 +64,7 @@
 
 
 
-      <div id="inputs">
-            <div>
-                  <label style="font-weight: bold;" for="planilha-a-tratar" class="form-label">Relatório Enterprise:</label>
-                  <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-a-tratar" id="planilha-a-tratar">
-            </div>
-            <div>
-                  <label style="font-weight: bold;" for="planilha-de-comissao" class="form-label">Planilha de comissões:</label>
-                  <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-de-comissao" id="planilha-de-comissao">
-            </div>
-            <div>
-                  <button onclick="salvaPlanilha()" type="button" class="btn btn-light" id="salvar">Salvar Planilha</button>
-            </div>
-            <div>
-                  <button onclick="salvaTxt()" type="button" class="btn btn-light" id="salvar-txt">Salvar .txt</button>
-            </div>
-      </div>
+      
       <div style="margin: auto; padding: 20px;" class="row g-3 align-items-center">
             <div class="col-auto">
               <label for="inputPassword6" class="col-form-label">Dias úteis</label>
