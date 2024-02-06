@@ -60,24 +60,6 @@ app.get('/motoristas', (req,res) => {
       });
 });
 
-/*app.get('/adicionar-cadastro', async (req,res) => {
-      try {
-            await Cadastros.insertMany([
-                  {
-                        matricula: 111,
-                        nome: "Carlos Eduardo",
-                  },
-                  {
-                        matricula: 222,
-                        nome: "Nicole Castagnolli",
-                  }
-            ]);
-            res.send("Data added...");
-      } catch (error) {
-            console.log(error);
-      }
-});*/
-
 app.get('/cadastros', async (req,res) => {
       const cadastros = await Cadastros.find();
       if (cadastros) {
