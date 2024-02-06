@@ -130,6 +130,7 @@
                               let planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
                               for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
                                     for (let j = 0; j < planilha_de_comissao_json.length; j++) {
+                                          console.log(planilha_de_horas_tratada_json[i]["Matrícula"], " === ", planilha_de_comissao_json[j]["MATRÍCULA"]);
                                           if (planilha_de_horas_tratada_json[i]["Matrícula"] === planilha_de_comissao_json[j]["MATRÍCULA"]) {
                                                 planilha_de_horas_tratada_json[i]["Comissão"] = planilha_de_comissao_json[j]["COMISSÃO"];
                                           }
