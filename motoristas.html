@@ -286,6 +286,7 @@
                         const response = await fetch('/cadastros');
                         if (response.ok) {
                               const dados = await response.json();
+                              console.log(dados);
                               let novo = dados.split(',');
                               for (let i = 0; i < novo.length; i++) {
                                     let novodenovo = novo[i].split(':');
