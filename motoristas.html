@@ -288,14 +288,14 @@
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
                                     for (let k = 0; k < dados.length; k++) {
                                           console.log(dados[k]["nome"]);
-                                          if (planilha_de_horas_tratada_json[j]["Motorista"] === dadosJSON[k]["nome"]) {
-                                                planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["nome"];
-                                                planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["matricula"];
+                                          if (planilha_de_horas_tratada_json[j]["Motorista"] === dados[k]["nome"]) {
+                                                planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
+                                                planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                           } else {
-                                                similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dadosJSON[k]["nome"]);
+                                                similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dados[k]["nome"]);
                                                 if (similaridade > 0.85) {
-                                                      planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["nome"];
-                                                      planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["matricula"];
+                                                      planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
+                                                      planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                                 }
                                           }
                                     }
