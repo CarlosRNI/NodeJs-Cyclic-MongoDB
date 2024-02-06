@@ -88,12 +88,12 @@
 
             function salvaTxt() {
                   let texto = '';
-                  for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
-                        const matricula = planilha_de_horas_tratada_json[i]["Matrícula"].toString().padStart(5, '0');
-                        const horaExtra = planilha_de_horas_tratada_json[i]["Hora Extra"].toString().replace('.','').padStart(5, '0');
-                        const adicNot = planilha_de_horas_tratada_json[i]["Adicional Noturno"].toString().replace('.','').padStart(5, '0');
-                        const horRed = planilha_de_horas_tratada_json[i]["Hora Reduzida"].toString().replace('.','').padStart(5, '0');
-                        const comissao = planilha_de_horas_tratada_json[i]["Comissão"].toString().replace('.', '').padStart(11, '0');
+                  for (let i = 0; i < newArray.length; i++) {
+                        const matricula = newArray[i]["Matrícula"].toString().padStart(5, '0');
+                        const horaExtra = newArray[i]["Hora Extra"].toString().replace('.','').padStart(5, '0');
+                        const adicNot = newArray[i]["Adicional Noturno"].toString().replace('.','').padStart(5, '0');
+                        const horRed = newArray[i]["Hora Reduzida"].toString().replace('.','').padStart(5, '0');
+                        const comissao = newArray[i]["Comissão"].toString().replace('.', '').padStart(11, '0');
                         // Hora Extra
                         texto = texto +  matricula + '|000|' + horaExtra + '|00000000000|                    |00017\n';
                         // Adicional Noturno
@@ -122,7 +122,7 @@
             function salvaPlanilha() {
                   // Convert the modified funcionarios to Excel file
                   const workbook = XLSX.utils.book_new();
-                  const worksheet = XLSX.utils.json_to_sheet(planilha_de_horas_tratada_json);
+                  const worksheet = XLSX.utils.json_to_sheet(newArray);
                   XLSX.utils.book_append_sheet(workbook, worksheet, 'Planilha_Tratada');
                   // Save the Excel file
                   XLSX.writeFile(workbook, 'Planilha_Tratada.xlsx');
