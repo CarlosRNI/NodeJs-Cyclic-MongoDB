@@ -69,7 +69,7 @@
             </div>
           </div>
           <br>
-      <div id="table-display" style="display: flex; justify-content: center;" class="table table-striped"></div>
+      <div id="table-display" style="display: flex; justify-content: center;"></div>
 
       <script>
 
@@ -354,10 +354,13 @@
             function mostraArquivo() {
                   removeArquivo();
                   let table = document.createElement("table");
-                  table.width = "80%";
-                  table.border = "1px solid black";
+                  //table.width = "80%";
+                  //table.border = "1px solid black";
                   table.style.borderCollapse = "collapse";
-                  table.className = "table table-striped thead-dark";
+                  table.tHead.className = "thead-dark";
+                  table.style.width = "80%";
+                  table.style.border = "1px solid black";
+                  table.className = "table table-striped";
                   let headerRow = table.insertRow(0);
                   // Add headers
                   for (let header in planilha_de_horas_tratada_json[0]) {
