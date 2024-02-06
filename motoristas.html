@@ -150,40 +150,11 @@
                                           }
                                     }
                               }
-                              console.log(planilha_de_comissao_json);
                               planilha_de_comissao_json = newArray;
-                              console.log(planilha_de_comissao_json);
                               mostraArquivo();
                         }
                         
                   }
-
-                  /*
-                  if (document.getElementById('planilha-a-tratar').value) {
-                        let planilha_de_horas = await lerPlanilha('planilha-a-tratar');
-                        let planilha_de_horas_json = transformaParaJson(planilha_de_horas);
-                        planilha_de_horas_tratada_json = trataPlanilhaMotoristas(planilha_de_horas_json);
-                        await teste();
-                        if (document.getElementById('planilha-de-comissao').value) {
-                              let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
-                              planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
-                              for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
-                                    for (let j = 0; j < planilha_de_comissao_json.length; j++) {
-                                          if (parseInt(planilha_de_horas_tratada_json[i]["Matrícula"]) === planilha_de_comissao_json[j]["MATRÍCULA"]) {
-                                                planilha_de_horas_tratada_json[i]["Comissão"] = planilha_de_comissao_json[j]["COMISSÃO"];
-                                          }
-                                    }
-                              }
-                              console.log(planilha_de_horas_tratada_json);
-                              planilha_de_horas_tratada_json = removeEntriesNotInArray2(planilha_de_horas_tratada_json, planilha_de_comissao_json);
-                              console.log(planilha_de_horas_tratada_json);
-                              await teste();
-                              mostraArquivo();
-                        }
-                        //planilha_de_horas_tratada_json = removeEntriesNotInArray2(planilha_de_horas_tratada_json, planilha_de_comissao_json);
-                        mostraArquivo();
-                  }
-                  */
             }
 
             function lerPlanilha(planilhaID) {
