@@ -129,41 +129,6 @@
             }
 
             async function iniciarTratamento() {
-                  
-                  if (document.getElementById('planilha-a-tratar').value && document.getElementById('planilha-de-comissao').value) {
-                        let planilha_de_horas = await lerPlanilha('planilha-a-tratar');
-                        let planilha_de_horas_json = transformaParaJson(planilha_de_horas);
-                        planilha_de_horas_tratada_json = trataPlanilhaMotoristas(planilha_de_horas_json);
-
-                        let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
-                        planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
-
-                        await teste();
-                        mostraArquivo();
-
-                        for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
-                              for (let j = 0; j < planilha_de_comissao_json.length; j++) {
-                                    console.log(planilha_de_horas_tratada_json);
-                                    console.log(planilha_de_comissao_json);
-                                    console.log(planilha_de_horas_tratada_json[i]["Matrícula"], " === ", planilha_de_comissao_json[j]["MATRÍCULA"]);
-                                    if (parseInt(planilha_de_horas_tratada_json[i]["Matrícula"]) === planilha_de_comissao_json[j]["MATRÍCULA"]) {
-                                        tictic.push({
-                                            "Matrícula": planilha_de_comissao_json[j]["MATRÍCULA"],
-                                            "Motorista": planilha_de_comissao_json[j]["MOTORISTA"],
-                                            "Hora Extra": planilha_de_horas_tratada_json[i]["Hora Extra"],
-                                            "Adicional Noturno": planilha_de_horas_tratada_json[i]["Adicional Noturno"],
-                                            "Hora Reduzida": planilha_de_horas_tratada_json[i]["Hora Reduzida"],
-                                            "Comissão": planilha_de_comissao_json[j]["COMISSÃO"]
-                                        });
-                                    }
-                              }
-                        }
-                        console.log("Tictic: ", tictic);
-                  }
-                  
-
-
-                  /*
                   if (document.getElementById('planilha-a-tratar').value) {
                         let planilha_de_horas = await lerPlanilha('planilha-a-tratar');
                         let planilha_de_horas_json = transformaParaJson(planilha_de_horas);
@@ -184,7 +149,7 @@
                         }
                         mostraArquivo();
                   }
-                  */
+                  
             }
 
             function lerPlanilha(planilhaID) {
