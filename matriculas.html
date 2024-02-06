@@ -89,7 +89,7 @@
                   // Get values from the input fields
                   const matricula = document.getElementById('matricula').value;
                   const nome = document.getElementById('nome').value;
-
+                  console.log(matricula);
                   checkMatriculaExists(matricula).then(matriculaExists => {
                         if (matriculaExists) {
                               alert(`Matrícula ${matricula} already exists!`);
