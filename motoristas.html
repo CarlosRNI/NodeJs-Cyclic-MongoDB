@@ -40,19 +40,19 @@
       </nav>
 
       <h1 style="margin-left: 15px;">Pagamentos Motoristas</h1>
-      <form class="row g-4 align-items-center" style="margin: auto; padding: 20px;">
-            <div style="padding: 50px;" class="col-auto">
+      <form class="row g-4 align-items-center" style="margin: auto;">
+            <div style="padding: 0 20px;" class="col-auto">
                   <label style="font-weight: bold;" for="planilha-a-tratar" class="form-label">Relatório Enterprise:</label>
                   <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-a-tratar" id="planilha-a-tratar">
             </div>
-            <div style="padding: 50px;" class="col-auto">
+            <div style="padding: 0 50px;" class="col-auto">
                   <label style="font-weight: bold;" for="planilha-de-comissao" class="form-label">Planilha de comissões:</label>
                   <input class="form-control" onchange="iniciarTratamento()" type="file" name="planilha-de-comissao" id="planilha-de-comissao">
             </div>
-            <div style="padding: 50px;" class="col-auto">
+            <div style="padding: 0 50px;" class="col-auto">
                   <button onclick="salvaPlanilha()" type="button" class="btn btn-light" id="salvar">Salvar Planilha</button>
             </div>
-            <div style="padding: 50px;" class="col-auto">
+            <div style="padding: 0 50px;" class="col-auto">
                   <button onclick="salvaTxt()" type="button" class="btn btn-light" id="salvar-txt">Salvar .txt</button>
             </div>
       </form> 
@@ -64,7 +64,7 @@
 
 
       
-      <div style="margin: auto; padding: 20px;" class="row g-3 align-items-center">
+      <div style="margin: auto; padding: 15px 20px;" class="row g-3 align-items-center">
             <div class="col-auto">
               <label for="inputPassword6" class="col-form-label">Dias úteis</label>
             </div>
@@ -361,8 +361,8 @@
             function mostraArquivo() {
                   removeArquivo();
                   let table = document.createElement("table");
-                  //table.width = "80%";
-                  //table.border = "1px solid black";
+                  table.width = "80%";
+                  table.border = "1px solid black";
                   table.style.borderCollapse = "collapse";
                   table.style.width = "80%";
                   table.style.border = "1px solid black";
