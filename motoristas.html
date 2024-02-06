@@ -129,6 +129,7 @@
             }
 
             async function iniciarTratamento() {
+                  newArray = [];
                   if (document.getElementById('planilha-a-tratar').value) {
                         let planilha_de_horas = await lerPlanilha('planilha-a-tratar');
                         let planilha_de_horas_json = transformaParaJson(planilha_de_horas);
