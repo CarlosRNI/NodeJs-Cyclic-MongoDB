@@ -284,7 +284,7 @@
             async function teste() {
                   try {
                         const response = await fetch('/cadastros');
-                        if (res.ok) {
+                        if (response.ok) {
                               const dados = await response.json();
                               let novo = dados.split(',');
                               for (let i = 0; i < novo.length; i++) {
@@ -315,7 +315,7 @@
                                     }
                               }
                         } else {
-                              console.error('Error fetching data:', res.statusText);
+                              console.error('Error fetching data:', response.statusText);
                         }
                   } catch (error) {
                         console.error('Error fetching data:', error);
