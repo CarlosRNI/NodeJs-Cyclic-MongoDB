@@ -80,6 +80,24 @@
 
       <script>
 
+function removeEntriesNotInArray2(array1, array2) {
+    let result = [];
+    for (let obj1 of array1) {
+        let found = false;
+        for (let obj2 of array2) {
+            let similarity = calculateSimilarity(obj1.Motorista, obj2.MOTORISTA);
+            if (similarity >= 0.8) { // Adjust the threshold as needed
+                found = true;
+                break;
+            }
+        }
+        if (found) {
+            result.push(obj1);
+        }
+    }
+    return result;
+}
+
             
 
             let planilha_de_horas_tratada_json;
@@ -143,9 +161,13 @@
                                           }
                                     }
                               }
+                              console.log(planilha_de_horas_tratada_json);
+                              planilha_de_horas_tratada_json = removeEntriesNotInArray2(planilha_de_horas_tratada_json, planilha_de_comissao_json);
+                              console.log(planilha_de_horas_tratada_json);
                               await teste();
                               mostraArquivo();
                         }
+                        //planilha_de_horas_tratada_json = removeEntriesNotInArray2(planilha_de_horas_tratada_json, planilha_de_comissao_json);
                         mostraArquivo();
                   }
             }
@@ -358,9 +380,7 @@
                   return planilha_json_tratada;
             }
 
-            function mostraArquivo() {
-                  console.log(planilha_de_comissao_json);
-                  
+            function mostraArquivo() {                  
                   removeArquivo();
                   let table = document.createElement("table");
                   table.width = "80%";
@@ -371,17 +391,17 @@
                   table.className = "table table-striped";
                   let headerRow = table.insertRow(0);
                   // Add headers
-                  for (let header in planilha_de_comissao_json[0]) {
+                  for (let header in planilha_de_horas_tratada_json[0]) {
                         let cell = headerRow.insertCell();
                         cell.innerHTML = `<b>${header}</b>`;
                   }
                   // Add data rows
-                  for (let i = 0; i < planilha_de_comissao_json.length; i++) {
+                  for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
                         let row = table.insertRow();
                         // Add data cells
-                        for (let header in planilha_de_comissao_json[0]) {
+                        for (let header in planilha_de_horas_tratada_json[0]) {
                               let cell = row.insertCell();
-                              cell.innerHTML = planilha_de_comissao_json[i][header];
+                              cell.innerHTML = planilha_de_horas_tratada_json[i][header];
                               cell.contentEditable = true;
                               // Add event listener for the 'input' event
                               cell.addEventListener('keydown', function (event) {
@@ -390,7 +410,7 @@
                                           // Prevent the default behavior of the 'Tab' key
                                           event.preventDefault();
                                           // Update the JSON when the cell value changes
-                                          planilha_de_comissao_json[i][header] = cell.innerHTML;
+                                          planilha_de_horas_tratada_json[i][header] = cell.innerHTML;
                                           // atualiza o valor e trata denovo
                                           teste();
                                           mostraArquivo();
@@ -407,14 +427,14 @@
                                     // Remove the row from the table
                                     table.deleteRow(row.rowIndex);
                                     // Remove the corresponding entry from the JSON data
-                                    planilha_de_comissao_json.splice(i, 1);
+                                    planilha_de_horas_tratada_json.splice(i, 1);
                                     // atualiza o valor e trata denovo
                                     teste();
                                     mostraArquivo();
                               });
                               deleteButtonCell.appendChild(deleteButton);
                         }
-                  }/*
+                  }
                   // Calculate totals
                   let totalsRow = table.insertRow();
                   totalsRow.style.fontWeight = 'bold';
@@ -429,7 +449,7 @@
                               }
                         }
                         totalCell.innerHTML = total.toFixed(2);
-                  }*/
+                  }
                   // Display the table on the page
                   let centro = document.getElementById('table-display');
                   centro.appendChild(table);
