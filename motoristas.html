@@ -130,7 +130,6 @@
                               let planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
                               for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
                                     for (let j = 0; j < planilha_de_comissao_json.length; j++) {
-                                          console.log(planilha_de_horas_tratada_json[i]["Matrícula"], " === ", planilha_de_comissao_json[j]["MATRÍCULA"]);
                                           if (planilha_de_horas_tratada_json[i]["Matrícula"] === planilha_de_comissao_json[j]["MATRÍCULA"]) {
                                                 planilha_de_horas_tratada_json[i]["Comissão"] = planilha_de_comissao_json[j]["COMISSÃO"];
                                           }
@@ -286,31 +285,16 @@
                         const response = await fetch('/cadastros');
                         if (response.ok) {
                               const dados = await response.json();
-                              console.log(dados);
-                              let novo = dados.split(',');
-                              for (let i = 0; i < novo.length; i++) {
-                                    let novodenovo = novo[i].split(':');
-                                    novodenovo0 = parseInt(novodenovo[0].replace(/[{}'"]/g, ''));
-                                    novodenovo1 = novodenovo[1].replace(/[{}'"]/g, '');
-                                    if (!dadosJSON.some(item => item.Matrícula === novodenovo0 && item.Motorista === novodenovo1)) {
-                                          dadosJSON.push({
-                                                "Matrícula": novodenovo0,
-                                                "Motorista": novodenovo1
-                                          });
-                                    }
-                              }
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
-                                    for (let k = 0; k < dadosJSON.length; k++) {
-                                          if (planilha_de_horas_tratada_json[j]["Motorista"] === dadosJSON[k]["Motorista"]) {
-                                                planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["Motorista"];
-                                                planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["Matrícula"];
+                                    for (let k = 0; k < dados.length; k++) {
+                                          if (planilha_de_horas_tratada_json[j]["Motorista"] === dadosJSON[k]["nome"]) {
+                                                planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["nome"];
+                                                planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["matricula"];
                                           } else {
-                                                // calcula similaridade
-                                                similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dadosJSON[k]["Motorista"]);
+                                                similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dadosJSON[k]["nome"]);
                                                 if (similaridade > 0.85) {
-                                                      console.log(planilha_de_horas_tratada_json[j]["Motorista"], " é similar a ", dadosJSON[k]["Motorista"]);
-                                                      planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["Motorista"];
-                                                      planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["Matrícula"];
+                                                      planilha_de_horas_tratada_json[j]["Motorista"] = dadosJSON[k]["nome"];
+                                                      planilha_de_horas_tratada_json[j]["Matrícula"] = dadosJSON[k]["matricula"];
                                                 }
                                           }
                                     }
