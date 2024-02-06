@@ -135,7 +135,7 @@
                         planilha_de_horas_tratada_json = trataPlanilhaMotoristas(planilha_de_horas_json);
 
                         await teste();
-                        //mostraArquivo();
+                        mostraArquivo();
 
                         if (document.getElementById('planilha-de-comissao').value) {
                               let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
@@ -404,17 +404,17 @@
                   table.className = "table table-striped";
                   let headerRow = table.insertRow(0);
                   // Add headers
-                  for (let header in planilha_de_horas_tratada_json[0]) {
+                  for (let header in newArray[0]) {
                         let cell = headerRow.insertCell();
                         cell.innerHTML = `<b>${header}</b>`;
                   }
                   // Add data rows
-                  for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
+                  for (let i = 0; i < newArray.length; i++) {
                         let row = table.insertRow();
                         // Add data cells
-                        for (let header in planilha_de_horas_tratada_json[0]) {
+                        for (let header in newArray[0]) {
                               let cell = row.insertCell();
-                              cell.innerHTML = planilha_de_horas_tratada_json[i][header];
+                              cell.innerHTML = newArray[i][header];
                               cell.contentEditable = true;
                               // Add event listener for the 'input' event
                               cell.addEventListener('keydown', function (event) {
@@ -423,7 +423,7 @@
                                           // Prevent the default behavior of the 'Tab' key
                                           event.preventDefault();
                                           // Update the JSON when the cell value changes
-                                          planilha_de_horas_tratada_json[i][header] = cell.innerHTML;
+                                          newArray[i][header] = cell.innerHTML;
                                           // atualiza o valor e trata denovo
                                           teste();
                                           mostraArquivo();
@@ -440,7 +440,7 @@
                                     // Remove the row from the table
                                     table.deleteRow(row.rowIndex);
                                     // Remove the corresponding entry from the JSON data
-                                    planilha_de_horas_tratada_json.splice(i, 1);
+                                    newArray.splice(i, 1);
                                     // atualiza o valor e trata denovo
                                     teste();
                                     mostraArquivo();
@@ -451,14 +451,14 @@
                   // Calculate totals
                   let totalsRow = table.insertRow();
                   totalsRow.style.fontWeight = 'bold';
-                  for (let header in planilha_de_horas_tratada_json[0]) {
+                  for (let header in newArray[0]) {
                         let totalCell = totalsRow.insertCell();
                         let total = 0;
                         // Check if the column should be included in the sum
                         if (header !== "Matrícula" && header !== "Motorista") {
                               // Calculate the sum for each column
-                              for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
-                                    total += parseFloat(planilha_de_horas_tratada_json[i][header]) || 0;
+                              for (let i = 0; i < newArray.length; i++) {
+                                    total += parseFloat(newArray[i][header]) || 0;
                               }
                         }
                         totalCell.innerHTML = total.toFixed(2);
