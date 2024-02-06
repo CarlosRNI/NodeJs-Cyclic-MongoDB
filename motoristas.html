@@ -131,7 +131,7 @@
                               for (let i = 0; i < planilha_de_horas_tratada_json.length; i++) {
                                     for (let j = 0; j < planilha_de_comissao_json.length; j++) {
                                           console.log(planilha_de_horas_tratada_json[i]["Matrícula"], " === ", planilha_de_comissao_json[j]["MATRÍCULA"]);
-                                          if (planilha_de_horas_tratada_json[i]["Matrícula"] === planilha_de_comissao_json[j]["MATRÍCULA"]) {
+                                          if (parseInt(planilha_de_horas_tratada_json[i]["Matrícula"]) === planilha_de_comissao_json[j]["MATRÍCULA"]) {
                                                 planilha_de_horas_tratada_json[i]["Comissão"] = planilha_de_comissao_json[j]["COMISSÃO"];
                                           }
                                     }
@@ -288,7 +288,6 @@
                               const dados = await response.json();
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
                                     for (let k = 0; k < dados.length; k++) {
-                                          console.log(dados[k]["nome"]);
                                           if (planilha_de_horas_tratada_json[j]["Motorista"] === dados[k]["nome"]) {
                                                 planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                 planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
