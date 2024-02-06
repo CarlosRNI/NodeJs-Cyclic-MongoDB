@@ -9,6 +9,8 @@
 <body>
       <h1>Matrículas HTML</h1>
       <br>
+      <a href="https://lime-good-hatchling.cyclic.app/">Voltar para index.html</a>
+      <br>
       <form id="cadastroForm">
             <label for="matricula">Matrícula:</label>
             <input type="text" id="matricula" name="matricula" required>
@@ -92,7 +94,7 @@
                   console.log(matricula);
                   await checkMatriculaExists(matricula).then(matriculaExists => {
                         if (matriculaExists) {
-                              alert(`Matrícula ${matricula} already exists!`);
+                              alert(`Matrícula ${matricula} já existe !`);
                               return;
                         }
                   });
