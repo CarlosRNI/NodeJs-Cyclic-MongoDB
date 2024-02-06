@@ -145,7 +145,7 @@
                                     console.log(planilha_de_horas_tratada_json);
                                     console.log(planilha_de_comissao_json);
                                     console.log(planilha_de_horas_tratada_json[i]["Matrícula"], " === ", planilha_de_comissao_json[j]["MATRÍCULA"]);
-                                    if (planilha_de_horas_tratada_json[i]["Matrícula"] === planilha_de_comissao_json[j]["MATRÍCULA"]) {
+                                    if (parseInt(planilha_de_horas_tratada_json[i]["Matrícula"]) === planilha_de_comissao_json[j]["MATRÍCULA"]) {
                                         tictic.push({
                                             "Matrícula": planilha_de_comissao_json[j]["MATRÍCULA"],
                                             "Motorista": planilha_de_comissao_json[j]["MOTORISTA"],
