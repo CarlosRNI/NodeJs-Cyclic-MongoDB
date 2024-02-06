@@ -127,6 +127,19 @@ app.post('/update-cadastros', async (req, res) => {
       }
     });
 
+      app.get('/matriculas-data', async (req, res) => {
+            try {
+                  // Fetch all entries from the Cadastros collection
+                  const cadastros = await Cadastros.find({}, { matricula: 1 }); // Only retrieve matricula field
+
+                  // Send the data to the client
+                  res.json(cadastros);
+            } catch (error) {
+                  console.error(error);
+                  res.status(500).send("Internal Server Error");
+            }
+      });
+
 connectDB().then(() => {
       app.listen(PORT, () => {
             console.log('Listening on port: ', PORT);

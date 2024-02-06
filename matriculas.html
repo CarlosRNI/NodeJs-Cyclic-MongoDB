@@ -35,15 +35,22 @@
 
       <script>
 
-            // Parse the query parameters
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            const alertMessage = urlParams.get('alert');
-            const matricula = urlParams.get('matricula');
+            // Fetch matriculas data from the server
+            async function fetchMatriculasData() {
+                  try {
+                        const response = await fetch('/matriculas-data');
+                        const data = await response.json();
+                        return data.map(entry => entry.matricula);
+                  } catch (error) {
+                        console.error('Error fetching matriculas data:', error);
+                  return [];
+                  }
+            }
 
-            // Display the alert message if it exists
-            if (alertMessage === 'MatriculaAlreadyExists' && matricula) {
-                  alert(`Matrícula ${matricula} already exists!`);
+            // Check if the inputted matricula exists
+            async function checkMatriculaExists(matricula) {
+                  const matriculasData = await fetchMatriculasData();
+                  return matriculasData.includes(matricula);
             }
 
 
@@ -82,6 +89,13 @@
                   // Get values from the input fields
                   const matricula = document.getElementById('matricula').value;
                   const nome = document.getElementById('nome').value;
+
+                  checkMatriculaExists(matricula).then(matriculaExists => {
+                        if (matriculaExists) {
+                              alert(`Matrícula ${matricula} already exists!`);
+                              return;
+                        }
+                  });
 
                   // Prepare data for the POST request
                   const data = { matricula, nome };
