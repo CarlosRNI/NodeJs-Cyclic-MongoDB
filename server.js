@@ -85,7 +85,7 @@ app.post('/adicionar-cadastro', async (req, res) => {
     
         if (existingCadastro) {
           // Matricula already exists, redirect to matriculas.html with an alert message
-          res.redirect('https://lime-good-hatchling.cyclic.app/matriculas?alert=MatriculaAlreadyExists');
+          res.redirect(`https://lime-good-hatchling.cyclic.app/matriculas?alert=MatriculaAlreadyExists&matricula=${matricula}`);
         } else {
           // Matricula doesn't exist, proceed with inserting the new data into the Cadastros collection
           await Cadastros.insertMany([{ matricula, nome }]);
@@ -96,6 +96,7 @@ app.post('/adicionar-cadastro', async (req, res) => {
         res.status(500).send("Internal Server Error");
       }
     });
+    
     
 
 // Update data in the Cadastros collection based on the received data

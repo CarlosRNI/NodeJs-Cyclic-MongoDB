@@ -21,6 +21,7 @@
       <br>
       <button id="salvar" onclick="saveChanges()">Salvar alterações</button>
       <br>
+      <br>
       <table id="cadastros-table" class="table table-striped">
             <thead class="thead-dark">
                   <tr>
@@ -34,15 +35,16 @@
 
       <script>
 
-             // Check for the 'alert' query parameter in the URL
-    const urlParams = new URLSearchParams(window.location.search);
-    const alertMessage = urlParams.get('alert');
-    console.log(alertMessage);
+            // Parse the query parameters
+            const queryString = window.location.search;
+            const urlParams = new URLSearchParams(queryString);
+            const alertMessage = urlParams.get('alert');
+            const matricula = urlParams.get('matricula');
 
-    // Display an alert if the 'alert' parameter is present
-    if (alertMessage === 'MatriculaAlreadyExists') {
-      alert('Matricula already exists in the database');
-    }
+            // Display the alert message if it exists
+            if (alertMessage === 'MatriculaAlreadyExists' && matricula) {
+                  alert(`Matrícula ${matricula} already exists!`);
+            }
 
 
 
@@ -94,7 +96,7 @@
                   })
                   .then(response => response.text())
                   .then(result => {
-                        //location.reload();
+                        location.reload();
                   })
                   .catch(error => {
                         console.error('Error:', error);
