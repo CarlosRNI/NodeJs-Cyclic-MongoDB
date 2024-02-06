@@ -47,6 +47,19 @@ app.get('/matriculas', (req,res) => {
       });
 });
 
+app.get('/motoristas', (req,res) => {
+      res.writeHead(200, { 'Content-Type': 'text/html' });
+      fs.readFile('motoristas.html', function(error, data) {
+            if (error) {
+                  res.writeHead(404);
+                  res.write('Error: File not found !');
+            } else {
+                  res.write(data);
+            }
+            res.end();
+      });
+});
+
 /*app.get('/adicionar-cadastro', async (req,res) => {
       try {
             await Cadastros.insertMany([
