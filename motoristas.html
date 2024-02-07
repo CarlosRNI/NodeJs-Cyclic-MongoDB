@@ -146,11 +146,11 @@
                                     let objtemp = [];
                                     objtemp.push({
                                           "Matrícula": 0,
-                                          "Motorista": ob1.MOTORISTA,
+                                          "Motorista": obj1.MOTORISTA,
                                           "Hora Extra": 0.0,
                                           "Adicional Noturno": 0.0,
                                           "Hora Reduzida": 0.0,
-                                          "Comissão": ob1.COMISSÃO
+                                          "Comissão": obj1.COMISSÃO
                                     });
                                     for (let obj2 of planilha_de_horas_tratada_json) {
                                           if (calculateSimilarity(obj1.MOTORISTA, obj2.Motorista) > 0.94) {
