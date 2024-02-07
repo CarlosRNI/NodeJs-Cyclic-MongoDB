@@ -141,23 +141,23 @@
                               let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
                               planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
                               let adicionado = false;
-                              for (let obj2 of planilha_de_comissao_json) {
-                                    for (let obj1 of planilha_de_horas_tratada_json) {
-                                          if (calculateSimilarity(obj2.MOTORISTA, obj1.Motorista) > 0.94) {
-                                                obj1.Comissão = obj2.COMISSÃO;
+                              for (let i = 0; i < planilha_de_comissao_json.length; i++) {
+                                    for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
+                                          if (calculateSimilarity(planilha_de_comissao_json[i]["MOTORISTA"], planilha_de_horas_tratada_json[j]["Motorista"]) > 0.94) {
+                                                planilha_de_horas_tratada_json[j]["Comissão"] = planilha_de_comissao_json[i]["COMISSÃO"];
                                                 adiconado = true;
-                                                newArray.push(obj1);
+                                                newArray.push(planilha_de_horas_tratada_json[j]);
                                           } else {
                                                 if (!adicionado) {
-                                                      obj1["Matrícula"] = 0;
-                                                      obj1["Motorista"] = obj2.MOTORISTA
-                                                      obj1["Hora Extra"] = 0.0;
-                                                      obj1["Adicional Noturno"] = 0.0;
-                                                      obj1["Hora Reduzida"] = 0.0;
-                                                      obj1["Comissão"] = obj2.COMISSÃO;
-                                                      newArray.push(obj1);
+                                                      planilha_de_horas_tratada_json[j]["Matrícula"] = 0;
+                                                      planilha_de_horas_tratada_json[j]["Motorista"] = planilha_de_comissao_json[i]["MOTORISTA"];
+                                                      planilha_de_horas_tratada_json[j]["Hora Extra"] = 0.0;
+                                                      planilha_de_horas_tratada_json[j]["Adicional Noturno"] = 0.0;
+                                                      planilha_de_horas_tratada_json[j]["Hora Reduzida"] = 0.0;
+                                                      planilha_de_horas_tratada_json[j]["Comissão"] = planilha_de_comissao_json[i]["COMISSÃO"];
+                                                      newArray.push(planilha_de_horas_tratada_json[j]);
                                                 }
-                                          }
+                                          } 
                                     }
                                     adicionado = false;
                               }
