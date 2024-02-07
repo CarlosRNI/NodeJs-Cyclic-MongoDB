@@ -309,8 +309,9 @@
                               const dados = await response.json();
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
                                     for (let k = 0; k < dados.length; k++) {
-                                          console.log(planilha_de_horas_tratada_json[j]["Matrícula"], " === ", dados[k]["matricula"]);
-                                          if (planilha_de_horas_tratada_json[j]["Matrícula"] === dados[k]["matricula"]) {
+                                          
+                                          if (calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dados[k]["nome"] > 0.94)) {
+                                                console.log(planilha_de_horas_tratada_json[j]["Motorista"], " === ", dados[k]["nome"]);
                                                 planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                 planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                           } 
