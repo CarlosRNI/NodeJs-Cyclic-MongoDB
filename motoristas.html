@@ -141,19 +141,30 @@
                         if (document.getElementById('planilha-de-comissao').value) {
                               let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
                               planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
-                              for (let obj1 of planilha_de_horas_tratada_json) {
-                                    for (let obj2 of planilha_de_comissao_json) {
-                                          if (calculateSimilarity(obj1.Motorista, obj2.MOTORISTA) > 0.94) {
-                                                obj1.Comissão = obj2.COMISSÃO;
-                                                newArray.push(obj1);
-                                                break; // Move to the next object in array1
+
+                              for (let obj1 of planilha_de_comissao_json) {
+                                    let objtemp = [];
+                                    objtemp.push({
+                                          "Matrícula": 0,
+                                          "Motorista": ob1.MOTORISTA,
+                                          "Hora Extra": 0.0,
+                                          "Adicional Noturno": 0.0,
+                                          "Hora Reduzida": 0.0,
+                                          "Comissão": ob1.COMISSÃO
+                                    });
+                                    for (let obj2 of planilha_de_horas_tratada_json) {
+                                          if (calculateSimilarity(obj1.MOTORISTA, obj2.Motorista) > 0.94) {
+                                                objtemp["Matrícula"] = obj2["Matrícula"];
+                                                objtemp["Hora Extra"] = obj2["Hora Extra"];
+                                                objtemp["Adicional Noturno"] = obj2["Adicional Noturno"];
+                                                objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
+                                    newArray.push(objtemp);
+                                    planilha_de_comissao_json = newArray;
+                                    mostraArquivo();
                               }
-                              planilha_de_comissao_json = newArray;
-                              mostraArquivo();
                         }
-                        
                   }
             }
 
