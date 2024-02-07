@@ -309,16 +309,17 @@
                               const dados = await response.json();
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
                                     for (let k = 0; k < dados.length; k++) {
-                                          if (planilha_de_horas_tratada_json[j]["Motorista"] === dados[k]["nome"]) {
+                                          if (planilha_de_horas_tratada_json[j]["Matrícula"] === dados[k]["matricula"]) {
                                                 planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                 planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
-                                          } else {
+                                          } 
+                                          /*else {
                                                 similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dados[k]["nome"]);
                                                 if (similaridade > 0.85) {
                                                       planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                       planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                                 }
-                                          }
+                                          }*/
                                     }
                               }
                         } else {
