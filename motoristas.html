@@ -140,22 +140,26 @@
                         if (document.getElementById('planilha-de-comissao').value) {
                               let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
                               planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
-                              for (let obj1 of planilha_de_horas_tratada_json) {
-                                    for (let obj2 of planilha_de_comissao_json) {
-                                          if (calculateSimilarity(obj1.Motorista, obj2.MOTORISTA) > 0.94) {
+                              let adicionado = false;
+                              for (let obj2 of planilha_de_comissao_json) {
+                                    for (let obj1 of planilha_de_horas_tratada_json) {
+                                          if (calculateSimilarity(obj2.MOTORISTA, obj1.Motorista) > 0.94) {
                                                 obj1.Comissão = obj2.COMISSÃO;
+                                                adiconado = true;
                                                 newArray.push(obj1);
-                                                break; // Move to the next object in array1
                                           } else {
-                                                obj1["Matrícula"] = 0;
-                                                obj1["Motorista"] = obj2.MOTORISTA
-                                                obj1["Hora Extra"] = 0.0;
-                                                obj1["Adicional Noturno"] = 0.0;
-                                                obj1["Hora Reduzida"] = 0.0;
-                                                obj1["Comissão"] = 0.0;
-                                                newArray.push(obj1);
+                                                if (!adicionado) {
+                                                      obj1["Matrícula"] = 0;
+                                                      obj1["Motorista"] = obj2.MOTORISTA
+                                                      obj1["Hora Extra"] = 0.0;
+                                                      obj1["Adicional Noturno"] = 0.0;
+                                                      obj1["Hora Reduzida"] = 0.0;
+                                                      obj1["Comissão"] = obj2.COMISSÃO;
+                                                      newArray.push(obj1);
+                                                }
                                           }
                                     }
+                                    adicionado = false;
                               }
                               planilha_de_comissao_json = newArray;
                               await teste();
