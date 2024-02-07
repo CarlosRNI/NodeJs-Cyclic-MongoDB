@@ -147,6 +147,7 @@
                                                 planilha_de_horas_tratada_json[j]["Comissão"] = planilha_de_comissao_json[i]["COMISSÃO"];
                                                 adiconado = true;
                                                 newArray.push(planilha_de_horas_tratada_json[j]);
+                                                break;
                                           } else {
                                                 if (!adicionado) {
                                                       planilha_de_horas_tratada_json[j]["Matrícula"] = 0;
@@ -156,6 +157,7 @@
                                                       planilha_de_horas_tratada_json[j]["Hora Reduzida"] = 0.0;
                                                       planilha_de_horas_tratada_json[j]["Comissão"] = planilha_de_comissao_json[i]["COMISSÃO"];
                                                       newArray.push(planilha_de_horas_tratada_json[j]);
+                                                      break;
                                                 }
                                           } 
                                     }
