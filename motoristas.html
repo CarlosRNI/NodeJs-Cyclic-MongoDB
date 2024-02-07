@@ -143,7 +143,7 @@
                               planilha_de_comissao_json = transformaParaJson(planilha_de_comissao);
                               for (let obj1 of planilha_de_horas_tratada_json) {
                                     for (let obj2 of planilha_de_comissao_json) {
-                                          if (calculateSimilarity(obj1.Motorista, obj2.MOTORISTA) > 0.85) {
+                                          if (calculateSimilarity(obj1.Motorista, obj2.MOTORISTA) > 0.94) {
                                                 obj1.Comissão = obj2.COMISSÃO;
                                                 newArray.push(obj1);
                                                 break; // Move to the next object in array1
@@ -307,7 +307,7 @@
                                                 planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                           } else {
                                                 similaridade = calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dados[k]["nome"]);
-                                                if (similaridade > 0.85) {
+                                                if (similaridade > 0.94) {
                                                       planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                       planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                                 }
