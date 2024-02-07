@@ -146,6 +146,14 @@
                                                 obj1.Comissão = obj2.COMISSÃO;
                                                 newArray.push(obj1);
                                                 break; // Move to the next object in array1
+                                          } else {
+                                                obj1["Matrícula"] = 0;
+                                                obj1["Motorista"] = obj2.MOTORISTA
+                                                obj1["Hora Extra"] = 0.0;
+                                                obj1["Adicional Noturno"] = 0.0;
+                                                obj1["Hora Reduzida"] = 0.0;
+                                                obj1["Comissão"] = 0.0;
+                                                newArray.push(obj1);
                                           }
                                     }
                               }
