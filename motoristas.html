@@ -145,7 +145,6 @@
                                     for (let obj1 of planilha_de_horas_tratada_json) {
                                           if (calculateSimilarity(obj2.MOTORISTA, obj1.Motorista) > 0.94) {
                                                 obj1.Comissão = obj2.COMISSÃO;
-                                                obj1.Matrícula = obj2.MATRÍCULA;
                                                 newArray.push(obj1);
                                                 break; // Move to the next object in array1
                                           } else {
@@ -304,13 +303,12 @@
             let dadosJSON = [];
 
             async function teste() {
-                 /* try {
+                  try {
                         const response = await fetch('/cadastros');
                         if (response.ok) {
                               const dados = await response.json();
                               for (let j = 0; j < planilha_de_horas_tratada_json.length; j++) {
                                     for (let k = 0; k < dados.length; k++) {
-                                          
                                           if (calculateSimilarity(planilha_de_horas_tratada_json[j]["Motorista"],dados[k]["nome"] > 0.94)) {
                                                 console.log(planilha_de_horas_tratada_json[j]["Motorista"], " === ", dados[k]["nome"]);
                                                 planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
@@ -322,7 +320,7 @@
                                                       planilha_de_horas_tratada_json[j]["Motorista"] = dados[k]["nome"];
                                                       planilha_de_horas_tratada_json[j]["Matrícula"] = dados[k]["matricula"];
                                                 }
-                                          }
+                                          }*/
                                     }
                               }
                         } else {
@@ -330,7 +328,7 @@
                         }
                   } catch (error) {
                         console.error('Error fetching data:', error);
-                  }*/
+                  }
             }
 
             function levenshteinDistance(str1, str2) {
