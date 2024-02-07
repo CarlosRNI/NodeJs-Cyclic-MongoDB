@@ -159,9 +159,11 @@
                                                 objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
+                                    console.log(objtemp);
                                     newArray.push(objtemp);
-                                    planilha_de_horas_tratada_json = newArray;   
                               }
+                              console.log(newArray);
+                              planilha_de_horas_tratada_json = newArray; 
                               await teste();
                               mostraArquivo();
                         }
