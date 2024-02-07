@@ -135,8 +135,11 @@
                         let planilha_de_horas_json = transformaParaJson(planilha_de_horas);
                         planilha_de_horas_tratada_json = trataPlanilhaMotoristas(planilha_de_horas_json);
 
+                        console.log(planilha_de_horas_tratada_json);
                         await teste();
+                        console.log(planilha_de_horas_tratada_json);
                         mostraArquivo();
+                        console.log(planilha_de_horas_tratada_json);
 
                         if (document.getElementById('planilha-de-comissao').value) {
                               let planilha_de_comissao = await lerPlanilha('planilha-de-comissao');
