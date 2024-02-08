@@ -224,30 +224,25 @@
                                                 tempMotorista = planilha_a_tratar_json[i-1]["Motorista"];
                                                 switch (property) {
                                                       case "Motorista":
-                                                      newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
-                                                      break;
+                                                            newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
+                                                            break;
                                                       case "Adicional Noturno":
-                                                      newObject[property] = adicionalNoturno;
-                                                      totalAdicionalNoturno += adicionalNoturno;
-                                                      break;
+                                                            newObject[property] = adicionalNoturno;
+                                                            totalAdicionalNoturno += adicionalNoturno;
+                                                            break;
                                                       case "Hora Extra":
-                                                      if (horaExtra <= horaMensal) {
-                                                      horaExtra = 0.0;
-                                                      break;
-                                                      } else {
-                                                      horaExtra = (horaExtra - horaMensal);
-                                                      totalHoraExtra += horaExtra;
-                                                      break;
-                                                      }
-                                                      newObject[property] = horaExtra;
-                                                      break;
+                                                            if (horaExtra <= horaMensal) {
+                                                                  horaExtra = 0.0;
+                                                            } else {
+                                                                  horaExtra = (horaExtra - horaMensal);
+                                                            }
+                                                            newObject[property] = horaExtra;
+                                                            break;
                                                       case "Hora Reduzida":
-                                                      newObject[property] = horaReduzida;
-                                                      totalHoraReduzida += horaReduzida;
-                                                      break;
+                                                            newObject[property] = horaReduzida;
+                                                            break;
                                                       default:
-                                                      newObject[property] = 0.0;
-                                                      break;
+                                                            newObject[property] = 0.0;
                                                 }
                                           });
                                           console.log(newObject);
