@@ -250,9 +250,11 @@
                                           case "Hora Extra":
                                           if (horaExtra <= horaMensal) {
                                           horaExtra = 0.0;
+                                          break;
                                           } else {
                                           horaExtra = (horaExtra - horaMensal);
                                           totalHoraExtra += horaExtra;
+                                          break;
                                           }
                                           newObject[property] = horaExtra;
                                           break;
@@ -262,6 +264,7 @@
                                           break;
                                           default:
                                           newObject[property] = 0.0;
+                                          break;
                                     }
                               });
                               planilha_tratada_motoristas.push(newObject);
