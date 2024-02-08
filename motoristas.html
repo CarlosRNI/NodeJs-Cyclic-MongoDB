@@ -292,9 +292,12 @@
                         // Se o nome do motorista igual ou acima de 85% compatível, pegue a matrícula do servidor e atribua a planilha_tratada_motoristas[i]["Matrícula"]
                         // Calcular similaridade, se > 0.85, temp = Nome do motorista
                         // Criar função procurar("Nome do motorista") que procura o nome nas matrículas e retona o número da matrícula.
-                        planilha_tratada_motoristas[i]["Adicional Noturno"] = planilha_tratada_motoristas[i]["Adicional Noturno"].toFixed(2);
-                        planilha_tratada_motoristas[i]["Hora Extra"] = planilha_tratada_motoristas[i]["Hora Extra"].toFixed(2);
-                        planilha_tratada_motoristas[i]["Hora Reduzida"] = planilha_tratada_motoristas[i]["Hora Reduzida"].toFixed(2);
+                        let tempadcnot = planilha_tratada_motoristas[i]["Adicional Noturno"];
+                        planilha_tratada_motoristas[i]["Adicional Noturno"] = tempadcnot.toFixed(2);
+                        let temphoraext = planilha_tratada_motoristas[i]["Hora Extra"];
+                        planilha_tratada_motoristas[i]["Hora Extra"] = temphoraext.toFixed(2);
+                        let temphorared = planilha_tratada_motoristas[i]["Hora Reduzida"];
+                        planilha_tratada_motoristas[i]["Hora Reduzida"] = temphorared.toFixed(2);
                   } 
                   return planilha_tratada_motoristas;
             }
