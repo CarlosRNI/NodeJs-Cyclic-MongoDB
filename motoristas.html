@@ -222,6 +222,7 @@
                               tempMotorista = planilha_a_tratar_json[i]["Motorista"];
                         } else {
                               if (planilha_a_tratar_json[i]["Motorista"] === planilha_a_tratar_json[i-1]["Motorista"]) {
+                                    console.log(i, " = ", planilha_a_tratar_json[i]["Motorista"], " === ", planilha_a_tratar_json[i-1]["Motorista"]);
                                     somaTempoNoturno = somaTempoNoturno + planilha_a_tratar_json[i]["Tempo Noturno"];
                                     somaTempoEmMovimento = somaTempoEmMovimento + planilha_a_tratar_json[i]["Tempo em Movimento"];
                                     tempMotorista = planilha_a_tratar_json[i]["Motorista"];
