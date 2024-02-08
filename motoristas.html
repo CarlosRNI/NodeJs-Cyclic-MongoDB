@@ -214,60 +214,49 @@
                               "Comissão"
                         ];
                         let newObject = {};
-                        if (i === 0) {
-                              somaTempoNoturno = planilha_a_tratar_json[i]["Tempo Noturno"];
-                              somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
-                              tempMotorista = planilha_a_tratar_json[i]["Motorista"];
-                        } else {
-                              
-                              if (planilha_a_tratar_json[i]["Motorista"] === planilha_a_tratar_json[i-1]["Motorista"]) {
-                                    somaTempoNoturno = somaTempoNoturno + planilha_a_tratar_json[i]["Tempo Noturno"];
-                                    somaTempoEmMovimento = somaTempoEmMovimento + planilha_a_tratar_json[i]["Tempo em Movimento"];
-                                    tempMotorista = planilha_a_tratar_json[i]["Motorista"];
-                              } else {
+                        
                                     if (planilha_a_tratar_json[i]["Motorista"] === undefined) {
                                           console.log(planilha_a_tratar_json[i-1]["Motorista"], planilha_a_tratar_json[i]["Tempo Noturno"], planilha_a_tratar_json[i]["Tempo em Movimento"]);
+                                          ordem.forEach(property => {
+                                                let adicionalNoturno = parseInt(planilha_a_tratar_json[i]["Tempo Noturno"] * 24) + ((((planilha_a_tratar_json[i]["Tempo Noturno"] * 24) - (parseInt(planilha_a_tratar_json[i]["Tempo Noturno"] * 24))) * 60) / 100);
+                                                let horaExtra = parseInt(planilha_a_tratar_json[i]["Tempo em Movimento"] * 24) + ((((planilha_a_tratar_json[i]["Tempo em Movimento"] * 24) - (parseInt(planilha_a_tratar_json[i]["Tempo em Movimento"] * 24))) * 60) / 100);
+                                                let horaReduzida = planilha_a_tratar_json[i]["Tempo Noturno"] * 0.142857;
+                                                horaReduzida = parseInt(horaReduzida * 24) + ((((horaReduzida * 24) - (parseInt(horaReduzida * 24))) * 60) / 100);
+                                                switch (property) {
+                                                      case "Motorista":
+                                                      newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
+                                                      break;
+                                                      case "Adicional Noturno":
+                                                      newObject[property] = adicionalNoturno;
+                                                      totalAdicionalNoturno += adicionalNoturno;
+                                                      break;
+                                                      case "Hora Extra":
+                                                      if (horaExtra <= horaMensal) {
+                                                      horaExtra = 0.0;
+                                                      break;
+                                                      } else {
+                                                      horaExtra = (horaExtra - horaMensal);
+                                                      totalHoraExtra += horaExtra;
+                                                      break;
+                                                      }
+                                                      newObject[property] = horaExtra;
+                                                      break;
+                                                      case "Hora Reduzida":
+                                                      newObject[property] = horaReduzida;
+                                                      totalHoraReduzida += horaReduzida;
+                                                      break;
+                                                      default:
+                                                      newObject[property] = 0.0;
+                                                      break;
+                                                }
+                                          });
+                                          planilha_tratada_motoristas.push(newObject);
                                           continue;
                                     }
-                              }
-                              ordem.forEach(property => {
-                                    let adicionalNoturno = parseInt(somaTempoNoturno * 24) + ((((somaTempoNoturno * 24) - (parseInt(somaTempoNoturno * 24))) * 60) / 100);
-                                    let horaExtra = parseInt(somaTempoEmMovimento * 24) + ((((somaTempoEmMovimento * 24) - (parseInt(somaTempoEmMovimento * 24))) * 60) / 100);
-                                    let horaReduzida = somaTempoNoturno * 0.142857;
-                                    horaReduzida = parseInt(horaReduzida * 24) + ((((horaReduzida * 24) - (parseInt(horaReduzida * 24))) * 60) / 100);
-                                    switch (property) {
-                                          case "Motorista":
-                                          newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
-                                          break;
-                                          case "Adicional Noturno":
-                                          newObject[property] = adicionalNoturno;
-                                          totalAdicionalNoturno += adicionalNoturno;
-                                          break;
-                                          case "Hora Extra":
-                                          if (horaExtra <= horaMensal) {
-                                          horaExtra = 0.0;
-                                          break;
-                                          } else {
-                                          horaExtra = (horaExtra - horaMensal);
-                                          totalHoraExtra += horaExtra;
-                                          break;
-                                          }
-                                          newObject[property] = horaExtra;
-                                          break;
-                                          case "Hora Reduzida":
-                                          newObject[property] = horaReduzida;
-                                          totalHoraReduzida += horaReduzida;
-                                          break;
-                                          default:
-                                          newObject[property] = 0.0;
-                                          break;
-                                    }
-                              });
-                              planilha_tratada_motoristas.push(newObject);
-                              somaTempoNoturno = planilha_a_tratar_json[i]["Tempo Noturno"];
-                              somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
                               
-                        }
+                              
+                              
+                        
                   }
                   for (let i = 0; i < planilha_tratada_motoristas.length - 1; i++) {
                         // Check if the current and next objects are defined
