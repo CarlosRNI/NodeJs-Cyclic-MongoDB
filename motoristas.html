@@ -227,44 +227,39 @@
                                     tempMotorista = planilha_a_tratar_json[i]["Motorista"];
                               } else {
                                     if (planilha_a_tratar_json[i]["Motorista"] === undefined) {
-                                          let not = parseInt(somaTempoNoturno * 24) + ((((somaTempoNoturno * 24) - (parseInt(somaTempoNoturno * 24))) * 60) / 100);
-                                          let ext = parseInt(somaTempoEmMovimento * 24) + ((((somaTempoEmMovimento * 24) - (parseInt(somaTempoEmMovimento * 24))) * 60) / 100);
-                                          let red = somaTempoNoturno * 0.142857;
-                                          red = parseInt(red * 24) + ((((red * 24) - (parseInt(red * 24))) * 60) / 100);
-                                          console.log(planilha_a_tratar_json[i-1]["Motorista"], " , ", ext, " , ", not, " , ", red);
-                                          continue;
+                                          ordem.forEach(property => {
+                                                let adicionalNoturno = parseInt(somaTempoNoturno * 24) + ((((somaTempoNoturno * 24) - (parseInt(somaTempoNoturno * 24))) * 60) / 100);
+                                                let horaExtra = parseInt(somaTempoEmMovimento * 24) + ((((somaTempoEmMovimento * 24) - (parseInt(somaTempoEmMovimento * 24))) * 60) / 100);
+                                                let horaReduzida = somaTempoNoturno * 0.142857;
+                                                horaReduzida = parseInt(horaReduzida * 24) + ((((horaReduzida * 24) - (parseInt(horaReduzida * 24))) * 60) / 100);
+                                                switch (property) {
+                                                      case "Motorista":
+                                                      newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
+                                                      break;
+                                                      case "Adicional Noturno":
+                                                      newObject[property] = adicionalNoturno;
+                                                      totalAdicionalNoturno += adicionalNoturno;
+                                                      break;
+                                                      case "Hora Extra":
+                                                      if (horaExtra <= horaMensal) {
+                                                      horaExtra = 0.0;
+                                                      } else {
+                                                      horaExtra = (horaExtra - horaMensal);
+                                                      totalHoraExtra += horaExtra;
+                                                      }
+                                                      newObject[property] = horaExtra;
+                                                      break;
+                                                      case "Hora Reduzida":
+                                                      newObject[property] = horaReduzida;
+                                                      totalHoraReduzida += horaReduzida;
+                                                      break;
+                                                      default:
+                                                      newObject[property] = 0.0;
+                                                }
+                                          });
                                     }
                               }
-                              ordem.forEach(property => {
-                                    let adicionalNoturno = parseInt(somaTempoNoturno * 24) + ((((somaTempoNoturno * 24) - (parseInt(somaTempoNoturno * 24))) * 60) / 100);
-                                    let horaExtra = parseInt(somaTempoEmMovimento * 24) + ((((somaTempoEmMovimento * 24) - (parseInt(somaTempoEmMovimento * 24))) * 60) / 100);
-                                    let horaReduzida = somaTempoNoturno * 0.142857;
-                                    horaReduzida = parseInt(horaReduzida * 24) + ((((horaReduzida * 24) - (parseInt(horaReduzida * 24))) * 60) / 100);
-                                    switch (property) {
-                                          case "Motorista":
-                                          newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
-                                          break;
-                                          case "Adicional Noturno":
-                                          newObject[property] = adicionalNoturno;
-                                          totalAdicionalNoturno += adicionalNoturno;
-                                          break;
-                                          case "Hora Extra":
-                                          if (horaExtra <= horaMensal) {
-                                          horaExtra = 0.0;
-                                          } else {
-                                          horaExtra = (horaExtra - horaMensal);
-                                          totalHoraExtra += horaExtra;
-                                          }
-                                          newObject[property] = horaExtra;
-                                          break;
-                                          case "Hora Reduzida":
-                                          newObject[property] = horaReduzida;
-                                          totalHoraReduzida += horaReduzida;
-                                          break;
-                                          default:
-                                          newObject[property] = 0.0;
-                                    }
-                              });
+                              
                               planilha_tratada_motoristas.push(newObject);
                               somaTempoNoturno = planilha_a_tratar_json[i]["Tempo Noturno"];
                               somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
