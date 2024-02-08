@@ -159,10 +159,8 @@
                                                 objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
-                                    console.log(objtemp);
                                     newArray.push(objtemp);
                               }
-                              console.log(newArray);
                               planilha_de_horas_tratada_json = newArray; 
                               await teste();
                               mostraArquivo();
@@ -221,8 +219,8 @@
                               somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
                               tempMotorista = planilha_a_tratar_json[i]["Motorista"];
                         } else {
+                              console.log(i, " = ", planilha_a_tratar_json[i]["Motorista"], " === ", planilha_a_tratar_json[i-1]["Motorista"]);
                               if (planilha_a_tratar_json[i]["Motorista"] === planilha_a_tratar_json[i-1]["Motorista"]) {
-                                    console.log(i, " = ", planilha_a_tratar_json[i]["Motorista"], " === ", planilha_a_tratar_json[i-1]["Motorista"]);
                                     somaTempoNoturno = somaTempoNoturno + planilha_a_tratar_json[i]["Tempo Noturno"];
                                     somaTempoEmMovimento = somaTempoEmMovimento + planilha_a_tratar_json[i]["Tempo em Movimento"];
                                     tempMotorista = planilha_a_tratar_json[i]["Motorista"];
@@ -261,7 +259,6 @@
                                           newObject[property] = 0.0;
                                     }
                               });
-                              console.log(tempMotorista, somaTempoNoturno, somaTempoEmMovimento);
                               planilha_tratada_motoristas.push(newObject);
                               somaTempoNoturno = planilha_a_tratar_json[i]["Tempo Noturno"];
                               somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
