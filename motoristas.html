@@ -216,7 +216,6 @@
                         let newObject = {};
                         
                                     if (planilha_a_tratar_json[i]["Motorista"] === undefined) {
-                                          console.log(planilha_a_tratar_json[i-1]["Motorista"], planilha_a_tratar_json[i]["Tempo Noturno"], planilha_a_tratar_json[i]["Tempo em Movimento"]);
                                           ordem.forEach(property => {
                                                 let adicionalNoturno = parseInt(planilha_a_tratar_json[i]["Tempo Noturno"] * 24) + ((((planilha_a_tratar_json[i]["Tempo Noturno"] * 24) - (parseInt(planilha_a_tratar_json[i]["Tempo Noturno"] * 24))) * 60) / 100);
                                                 let horaExtra = parseInt(planilha_a_tratar_json[i]["Tempo em Movimento"] * 24) + ((((planilha_a_tratar_json[i]["Tempo em Movimento"] * 24) - (parseInt(planilha_a_tratar_json[i]["Tempo em Movimento"] * 24))) * 60) / 100);
@@ -250,8 +249,8 @@
                                                       break;
                                                 }
                                           });
+                                          console.log(newObject);
                                           planilha_tratada_motoristas.push(newObject);
-                                          continue;
                                     }
                               
                               
