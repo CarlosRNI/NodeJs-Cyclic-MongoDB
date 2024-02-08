@@ -227,7 +227,6 @@
                                     tempMotorista = planilha_a_tratar_json[i]["Motorista"];
                               } else {
                                     if (planilha_a_tratar_json[i]["Motorista"] === undefined) {
-                                          
                                           continue;
                                     }
                               }
@@ -236,7 +235,6 @@
                                     let horaExtra = parseInt(somaTempoEmMovimento * 24) + ((((somaTempoEmMovimento * 24) - (parseInt(somaTempoEmMovimento * 24))) * 60) / 100);
                                     let horaReduzida = somaTempoNoturno * 0.142857;
                                     horaReduzida = parseInt(horaReduzida * 24) + ((((horaReduzida * 24) - (parseInt(horaReduzida * 24))) * 60) / 100);
-                                    console.log(tempMotorista, adicionalNoturno, horaExtra, horaReduzida);
                                     switch (property) {
                                           case "Motorista":
                                           newObject[property] = tempMotorista.replace(/\d/g, '').trim().toUpperCase();
@@ -262,6 +260,7 @@
                                           newObject[property] = 0.0;
                                     }
                               });
+                              console.log(tempMotorista, somaTempoNoturno, somaTempoEmMovimento);
                               planilha_tratada_motoristas.push(newObject);
                               somaTempoNoturno = planilha_a_tratar_json[i]["Tempo Noturno"];
                               somaTempoEmMovimento = planilha_a_tratar_json[i]["Tempo em Movimento"];
