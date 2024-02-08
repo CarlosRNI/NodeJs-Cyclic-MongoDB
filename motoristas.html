@@ -228,7 +228,7 @@
                                     console.log("Totais = ", tempMotorista, " / ", somaTempoNoturno, " / ", somaTempoEmMovimento);
                               } else {
                                     if (planilha_a_tratar_json[i]["Motorista"] === undefined) {
-                                          console.log(tempMotorista, somaTempoNoturno, somaTempoEmMovimento);
+                                          console.log(planilha_a_tratar_json[i-1]["Motorista"], planilha_a_tratar_json[i]["Tempo Noturno"], planilha_a_tratar_json[i]["Tempo em Movimento"]);
                                           console.log(" ---------- ");
                                           continue;
                                     }
