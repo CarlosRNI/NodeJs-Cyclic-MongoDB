@@ -159,7 +159,9 @@
                                                 objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
-                                    console.log("Original = ", objtemp["Hora Reduzida"]);
+                                    console.log("Original float = ", parseFloat(objtemp["Hora Reduzida"]));
+                                    console.log("Original int = ", parseInt(objtemp["Hora Reduzida"]));
+                                    console.log("Novo = ", parseInt(objtemp["Hora Reduzida"]) + 1);
                                     if (parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"]) === 0.60) {
                                           console.log("Novo = ", parseInt(objtemp["Hora Reduzida"]) + 1);
                                     }
