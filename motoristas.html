@@ -94,7 +94,7 @@
                         const adicNot = newArray[i]["Adicional Noturno"].toString().replace('.','').padStart(5, '0');
                         const horRed = newArray[i]["Hora Reduzida"].toString().replace('.','').padStart(5, '0');
                         console.log(newArray[i]["Comissão"]);
-                        const comissao = newArray[i]["Comissão"].toString().replace('.', '').padStart(11, '0');
+                        const comissao = newArray[i]["Comissão"].toFixed(2).replace('.', '').padStart(11, '0');
                         console.log(comissao);
                         // Hora Extra
                         texto = texto +  matricula + '|000|' + horaExtra + '|00000000000|                    |00017\n';
