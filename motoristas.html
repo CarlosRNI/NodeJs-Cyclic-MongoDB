@@ -163,7 +163,7 @@
                                     console.log("Original int = ", parseInt(objtemp["Hora Reduzida"]));
                                     console.log("Resto = ", (parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"])).toFixed(2));
                                     if (parseFloat((parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"])).toFixed(2)) === 0.60) {
-                                          console.log("Novo = ", (parseInt(objtemp["Hora Reduzida"]) + 1).toString());
+                                          console.log("Novo = ", (parseInt(objtemp["Hora Reduzida"]) + 1).toFixed(2).toString());
                                     }
                                     newArray.push(objtemp);
                               }
