@@ -92,13 +92,7 @@
                         const matricula = newArray[i]["Matrícula"].toString().padStart(5, '0');
                         const horaExtra = newArray[i]["Hora Extra"].toString().replace('.','').padStart(5, '0');
                         const adicNot = newArray[i]["Adicional Noturno"].toString().replace('.','').padStart(5, '0');
-                        console.log(newArray[i]["Hora Reduzida"]);
-                        if (newArray[i]["Hora Reduzida"] - parseInt(newArray[i]["Hora Reduzida"]) === 0.60) {
-                              newArray[i]["Hora Reduzida"] = parseInt(newArray[i]["Hora Reduzida"]) + 1.00;
-                              console.log(newArray[i]["Hora Reduzida"]);
-                        }
                         const horRed = newArray[i]["Hora Reduzida"].toString().replace('.','').padStart(5, '0');
-                        console.log(horRed);
                         const comissao = newArray[i]["Comissão"].toString().replace('.', '').padStart(11, '0');
                         // Hora Extra
                         texto = texto +  matricula + '|000|' + horaExtra + '|00000000000|                    |00017\n';
@@ -165,6 +159,7 @@
                                                 objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
+                                    console.log(objtemp["Hora Reduzida"]);
                                     newArray.push(objtemp);
                               }
                               planilha_de_horas_tratada_json = newArray; 
