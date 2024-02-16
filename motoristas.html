@@ -160,6 +160,9 @@
                                           }
                                     }
                                     console.log(objtemp["Hora Reduzida"]);
+                                    if (parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"]) === 0.6) {
+                                          console.log(parseInt(objtemp["Hora Reduzida"]) + 1);
+                                    }
                                     newArray.push(objtemp);
                               }
                               planilha_de_horas_tratada_json = newArray; 
