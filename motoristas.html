@@ -168,7 +168,7 @@
                                     if (parseFloat((parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"])).toFixed(2)) === 0.60) {
                                           objtemp["Hora Reduzida"] =  (parseInt(objtemp["Hora Reduzida"]) + 1).toFixed(2).toString();
                                     }
-                                    console.log(objtemp["Comissão"]);
+                                    console.log(objtemp["Comissão"].toFixed(2));
                                     newArray.push(objtemp);
                               }
                               planilha_de_horas_tratada_json = newArray; 
