@@ -159,11 +159,14 @@
                                                 objtemp["Hora Reduzida"] = obj2["Hora Reduzida"];
                                           }
                                     }
-                                    console.log("Original float = ", parseFloat(objtemp["Hora Reduzida"]));
-                                    console.log("Original int = ", parseInt(objtemp["Hora Reduzida"]));
-                                    console.log("Resto = ", (parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"])).toFixed(2));
+                                    if (parseFloat((parseFloat(objtemp["Hora Extra"]) - parseInt(objtemp["Hora Extra"])).toFixed(2)) === 0.60) {
+                                          objtemp["Hora Extra"] =  (parseInt(objtemp["Hora Extra"]) + 1).toFixed(2).toString();
+                                    }
+                                    if (parseFloat((parseFloat(objtemp["Adicional Noturno"]) - parseInt(objtemp["Adicional Noturno"])).toFixed(2)) === 0.60) {
+                                          objtemp["Adicional Noturno"] =  (parseInt(objtemp["Adicional Noturno"]) + 1).toFixed(2).toString();
+                                    }
                                     if (parseFloat((parseFloat(objtemp["Hora Reduzida"]) - parseInt(objtemp["Hora Reduzida"])).toFixed(2)) === 0.60) {
-                                          console.log("Novo = ", (parseInt(objtemp["Hora Reduzida"]) + 1).toFixed(2).toString());
+                                          objtemp["Hora Reduzida"] =  (parseInt(objtemp["Hora Reduzida"]) + 1).toFixed(2).toString();
                                     }
                                     newArray.push(objtemp);
                               }
