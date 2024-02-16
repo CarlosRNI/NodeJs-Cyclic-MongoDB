@@ -91,7 +91,9 @@
                   for (let i = 0; i < newArray.length; i++) {
                         const matricula = newArray[i]["Matrícula"].toString().padStart(5, '0');
                         const horaExtra = newArray[i]["Hora Extra"].toString().replace('.','').padStart(5, '0');
+                        console.log(newArray[i]["Adicional Noturno"]);
                         const adicNot = newArray[i]["Adicional Noturno"].toString().replace('.','').padStart(5, '0');
+                        console.log(adicNot);
                         const horRed = newArray[i]["Hora Reduzida"].toString().replace('.','').padStart(5, '0');
                         const comissao = newArray[i]["Comissão"].toString().replace('.', '').padStart(11, '0');
                         // Hora Extra
@@ -103,7 +105,7 @@
                         // Comissão
                         texto = texto +  matricula + '|000|00000|' + comissao + '|                    |00036\n';
                   }
-                  salvarComoTxt(texto, 'importação.txt');
+                  salvarComoTxt(texto, 'FOLHA.txt');
             }
 
             function salvarComoTxt(texto, filename) {
